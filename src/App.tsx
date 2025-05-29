@@ -6,7 +6,7 @@ interface AppProps {
   title?: string;
 }
 
-const App: React.FC<AppProps> = ({ title = 'React App' }) => {
+const AppMain: React.FC<AppProps> = ({ title = 'React App' }) => {
   return (
     <div className="app-container">
       <header>
@@ -21,4 +21,4 @@ const App: React.FC<AppProps> = ({ title = 'React App' }) => {
   );
 };
 
-export default App;
+export default AppMain;
