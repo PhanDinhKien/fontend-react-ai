@@ -1,25 +1,23 @@
 import React from 'react';
-import '../styles/buttons.less';
+import { Button as AntdButton } from 'antd';
+import type { ButtonProps as AntdButtonProps } from 'antd';
 
-interface ButtonProps {
+interface ButtonProps extends Omit<AntdButtonProps, 'type'> {
   children: React.ReactNode;
-  onClick?: () => void;
-  type?: 'primary' | 'secondary';
+  type?: 'primary' | 'default' | 'dashed' | 'link' | 'text';
   className?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  onClick,
   type = 'primary',
   className = '',
+  ...rest
 }) => {
-  const buttonClass = `button ${type === 'secondary' ? 'secondary' : ''} ${className}`;
-  
   return (
-    <button className={buttonClass} onClick={onClick}>
+    <AntdButton type={type} className={className} {...rest}>
       {children}
-    </button>
+    </AntdButton>
   );
 };
 
