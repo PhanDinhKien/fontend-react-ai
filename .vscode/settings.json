@@ -1,0 +1,23 @@
+{
+  "files.associations": {
+    "*.tsx": "typescriptreact",
+    "*.ts": "typescript",
+    "*.js": "javascript",
+    "*.jsx": "javascriptreact",
+    "*.less": "less",
+    "*.scss": "scss"
+  },
+  "css.validate": true,
+  "less.validate": true,
+  "scss.validate": true,
+  "javascript.validate.enable": true,
+  "typescript.validate.enable": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx",
+    "typescript": "tsx"
+  }
+}
