@@ -7,10 +7,11 @@ interface FetchDataState {
   error: string | null;
 }
 
-const initialState: FetchDataState = {
+const initialState: FetchDataState & { form: any } = {
   data: null,
   loading: true,
   error: null,
+  form: null, // Sẽ lưu instance của form (thường là const [form] = useForm())
 };
 
 const handleFetchDataPending = (state: FetchDataState) => {
@@ -54,7 +55,12 @@ export const deleteDataThunk = createAsyncThunk('fetchData/deleteDataThunk', asy
 const fetchDataSlice = createSlice({
   name: 'fetchData',
   initialState,
-  reducers: {},
+  reducers: {
+    setForm(state, action) {
+      debugger; 
+      state.form = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchDataThunk.pending, handleFetchDataPending)
@@ -65,5 +71,7 @@ const fetchDataSlice = createSlice({
       .addCase(deleteDataThunk.rejected, handleDeleteDataRejected);
   },
 });
+
+export const { setForm } = fetchDataSlice.actions;
 
 export default fetchDataSlice.reducer;

@@ -10,7 +10,6 @@ import { appRoutes, mapRoutesToMenuItems, NavigateHandler } from './shared/route
 import { useTranslation } from 'react-i18next';
 import SelectDefault from './components/Select/SelectDefault/selectDefault';
 import { fetchDataThunk } from './redux/thunk/fetchData';
-
 const { Header, Content, Sider } = Layout;
 
 interface AppProps {
@@ -43,8 +42,8 @@ const AppMain: React.FC<AppProps> = () => {
   const menuItems = React.useMemo(() => mapRoutesToMenuItems(appRoutes, t), [t]);
 
   const languageOptions = [
-    { label: 'English', value: 'en' },
-    { label: 'Tiếng Việt', value: 'vi' },
+    { label: <span><img src={require('./image/en_flag.png')} alt="en" style={{ width: 22, height: 16, objectFit: 'cover', marginRight: 8, borderRadius: 2, verticalAlign: 'middle' }} />English</span>, value: 'en' },
+    { label: <span><img src={require('./image/vn_flag.png')} alt="vi" style={{ width: 22, height: 16, objectFit: 'cover', marginRight: 8, borderRadius: 2, verticalAlign: 'middle' }} />Tiếng Việt</span>, value: 'vi' },
   ];
 
   const handleMenuClick = (e: { key: string }) => {
@@ -88,6 +87,8 @@ const AppMain: React.FC<AppProps> = () => {
                       value={i18n.language}
                       onChange={lng => i18n.changeLanguage(lng as string)}
                       placeholder="Language"
+                      showBorder={false}
+                      showSearch={false}
                     />
                   </div>
                 </Header>
