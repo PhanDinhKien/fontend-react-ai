@@ -1,11 +1,6 @@
 import React from 'react';
 import './styles/global.scss';
-import HomePage from './components/HomePage';
 import { ThemeProvider } from './context/ThemeContext';
-import ThemeToggle from './components/ThemeToggle';
-import SelectDefault from './components/Select/SelectDefault/selectDefault';
-import AccountInfoDefault from './components/AccountInfo/AccountInfoDefault';
-import SelectLoadMore from './components/Select/SelectLoadMore/selectLoadMore';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store, RootState, AppDispatch } from './redux/store';
 import { fetchData } from './redux/apiSlice';
@@ -119,15 +114,9 @@ const AppMain: React.FC<AppProps> = ({ title = 'React App' }) => {
                 }}
               >
                 <Routes>
-                  <Route path="/" element={
-                    <DemoHomeContent
-                      title={title}
-                      selected={selected}
-                      setSelected={setSelected}
-                      options={options}
-                    />
-                  } />
-                  <Route path="/about" element={<AboutPage />} />
+                  {getRouteConfig().map(route => (
+                    <Route key={route.key} path={route.path} element={route.element} />
+                  ))}
                 </Routes>
                 <NavigateHandler pendingNav={pendingNav} setPendingNav={setPendingNav} />
               </div>
@@ -160,5 +149,21 @@ const App: React.FC<AppProps> = (props) => (
     <AppMain {...props} />
   </Provider>
 );
+
+// Route configuration as a function to allow access to local variables
+const getRouteConfig = () => [
+  {
+    path: '/',
+    element: <DemoHomeContent />,
+    label: 'Home',
+    key: '1',
+  },
+  {
+    path: '/about',
+    element: <AboutPage />, 
+    label: 'About',
+    key: '2',
+  },
+];
 
 export default App;

@@ -11,14 +11,12 @@ export const colors = {
     light: '#40a9ff',   // $primary-light
     dark: '#096dd9',    // $primary-dark
   },
-  
   // Secondary colors
   secondary: {
     main: '#f5f5f5',    // $secondary-color
     light: '#fafafa',   // $secondary-light
-    dark: '#e8e8e8',    // $secondary-dark
+    dark: '#e8e8e8',   // $secondary-dark
   },
-  
   // Neutral colors
   neutral: {
     white: '#ffffff',
@@ -35,27 +33,35 @@ export const colors = {
       900: '#262626',
     },
   },
-  
   // Text colors
   text: {
     primary: '#333333',
     secondary: '#666666',
     disabled: '#999999',
   },
-  
   // Functional colors
   functional: {
     info: '#1890ff',
     success: '#52c41a',
     warning: '#faad14',
     error: '#f5222d',
+    infoDark: '#177ddc',
+    successDark: '#49aa19',
+    warningDark: '#d89614',
+    errorDark: '#d32029',
   },
-  
   // Background colors
   background: {
     main: '#f0f2f5',
     light: '#fafafa',
     dark: '#e6e6e6',
+    card: '#ffffff',
+    cardDark: '#252525',
+  },
+  // Border colors
+  border: {
+    main: '#d9d9d9',
+    dark: '#434343',
   },
 };
 

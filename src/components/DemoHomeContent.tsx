@@ -4,24 +4,22 @@ import SelectDefault from './Select/SelectDefault/selectDefault';
 import AccountInfoDefault from './AccountInfo/AccountInfoDefault';
 import SelectLoadMore from './Select/SelectLoadMore/selectLoadMore';
 import HomePage from './HomePage';
-import { RootState, AppDispatch } from '../redux/store';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchData } from '../redux/apiSlice';
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
 
-interface DemoHomeContentProps {
-  title: string;
-  selected: string | number | undefined;
-  setSelected: (v: string | number | undefined) => void;
-  options: { label: string; value: string | number }[];
-}
-
-const DemoHomeContent: React.FC<DemoHomeContentProps> = ({ title, selected, setSelected, options }) => {
+const DemoHomeContent: React.FC = () => {
+  const [selected, setSelected] = React.useState<string | number | undefined>(undefined);
+  const options = [
+    { label: 'Option 1', value: 1 },
+    { label: 'Option 2', value: 2 },
+    { label: 'Option 3', value: 3 },
+  ];
   const apiState = useSelector((state: RootState) => state.api);
 
   return (
     <>
       <header>
-        <h1>{title}</h1>
+        <h1>Demo Home</h1>
         <p>Welcome to your React application with TypeScript, SCSS and LESS!</p>
         <ThemeToggle />
       </header>
