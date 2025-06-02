@@ -1,15 +1,15 @@
 import React from 'react';
 import './styles/global.scss';
 import { ThemeProvider } from './context/ThemeContext';
-import { Provider, useDispatch } from 'react-redux';
-import { store, AppDispatch } from './redux/store';
-import { fetchData } from './redux/apiSlice';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { store, AppDispatch, RootState } from './redux/store';
 import { Layout, Menu, theme } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './page/login/login';
 import { appRoutes, mapRoutesToMenuItems, NavigateHandler } from './shared/router';
 import { useTranslation } from 'react-i18next';
 import SelectDefault from './components/Select/SelectDefault/selectDefault';
+import { fetchData } from './redux/thunk/fetchData';
 
 const { Header, Content, Sider } = Layout;
 
@@ -22,6 +22,15 @@ const AppMain: React.FC<AppProps> = () => {
   const [collapsed, setCollapsed] = React.useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { t, i18n } = useTranslation();
+
+  // Lấy state fetchData từ redux
+  const fetchDataState = useSelector((state: RootState) => state.fetchData);
+
+  React.useEffect(() => {
+    if(!fetchDataState.loading ) {
+       console.log('fetchDataState:', fetchDataState);
+    }
+  }, [fetchDataState]);
 
   React.useEffect(() => {
     dispatch(fetchData({ url: 'https://jsonplaceholder.typicode.com/todos/1' }));
@@ -60,7 +69,6 @@ const AppMain: React.FC<AppProps> = () => {
   const handleMenuClick = (e: { key: string }) => {
     setPendingNav(e.key);
     const found = appRoutes.find(r => r.key === e.key);
-    debugger; 
     if (found) {
       // Ưu tiên label nếu có, fallback về key
       const label = found.label ? t(found.label) : t(found.key);
@@ -136,6 +144,15 @@ const AppMain: React.FC<AppProps> = () => {
                           background: colorBgContainer,
                         }}
                       >
+                        {/* Hiển thị trạng thái fetchData */}
+                        <div style={{ marginBottom: 16 }}>
+                          <b>fetchData state:</b>
+                          {fetchDataState.loading && <div style={{ color: '#1890ff' }}>{t('loading')}</div>}
+                          {fetchDataState.error && <div style={{ color: 'red' }}>{t('error')}: {fetchDataState.error}</div>}
+                          {fetchDataState.data && (
+                            <pre style={{ fontSize: 13, margin: 0 }}>{JSON.stringify(fetchDataState.data, null, 2)}</pre>
+                          )}
+                        </div>
                         <Routes>
                           {appRoutes.map(route => (
                             <Route key={route.key} path={route.path} element={route.element} />
