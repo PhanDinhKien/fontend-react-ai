@@ -24,5 +24,11 @@
     "okText": "Delete",
     "cancelText": "Cancel",
     "content": "Are you sure you want to delete?"
+  },
+  "warningModal": {
+    "title": "Warning",
+    "okText": "OK",
+    "cancelText": "Cancel",
+    "content": "This is a warning!"
   }
 }

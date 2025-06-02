@@ -5,9 +5,12 @@ import SelectLoadMore from '../../components/Select/SelectLoadMore/selectLoadMor
 import { Form } from 'antd';
 import { useTranslation } from 'react-i18next';
 import ProForm from '@ant-design/pro-form/es';
+import ConfirmDelete from '../../components/Modal/ConfirmDelete';
+import { Trash } from 'phosphor-react';
 
 const DemoHomeContent: React.FC = () => {
   const [selected, setSelected] = React.useState<string | number | undefined>(undefined);
+  const [openDelete, setOpenDelete] = React.useState(false);
   const options = [
     { label: 'Option 1', value: 1 },
     { label: 'Option 2', value: 2 },
@@ -67,9 +70,18 @@ const DemoHomeContent: React.FC = () => {
             pageSize={20}
           />
         </ProForm>
-
       </div>
-
+      <div style={{ maxWidth: 320, margin: '24px auto' }}>
+        <button onClick={() => setOpenDelete(true)} style={{ marginBottom: 16 }}>
+          Hiện Confirm Delete
+        </button>
+        <ConfirmDelete
+          open={openDelete}
+          onOk={() => setOpenDelete(false)}
+          onCancel={() => setOpenDelete(false)}
+          iconConfirm={<Trash size={20} weight="fill" color="#D72229" />}
+        />
+      </div>
     </>
   );
 };

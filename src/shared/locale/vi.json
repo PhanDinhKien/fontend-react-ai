@@ -24,5 +24,11 @@
     "okText": "Xoá",
     "cancelText": "Huỷ",
     "content": "Bạn có chắc chắn muốn xoá không?"
+  },
+  "warningModal": {
+    "title": "Cảnh báo",
+    "okText": "Đồng ý",
+    "cancelText": "Huỷ",
+    "content": "Đây là cảnh báo!"
   }
 }

@@ -10,8 +10,6 @@ import { appRoutes, mapRoutesToMenuItems, NavigateHandler } from './shared/route
 import { useTranslation } from 'react-i18next';
 import SelectDefault from './components/Select/SelectDefault/selectDefault';
 import { fetchDataThunk } from './redux/thunk/fetchData';
-import ConfirmDelete from './components/Modal/ConfirmDelete';
-import { Trash } from 'phosphor-react/dist';
 const { Header, Content, Sider } = Layout;
 
 interface AppProps {
@@ -135,13 +133,6 @@ const AppMain: React.FC<AppProps> = () => {
                           ))}
                         </Routes>
                         <NavigateHandler pendingNav={pendingNav} setPendingNav={setPendingNav} />
-                        <button onClick={() => setOpen(true)}>Hiện Confirm Delete</button>
-                        <ConfirmDelete 
-                          open={open} 
-                          onOk={handleOk} 
-                          onCancel={handleCancel} 
-                          iconConfirm={<Trash size={20} weight="fill" />}
-                        />
                       </div>
                     </Content>
                   </Layout>
