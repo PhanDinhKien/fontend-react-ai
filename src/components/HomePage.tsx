@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
         <p>Count: <span className="count">{count}</span></p>
         
         <div className="button-group">
-          <Button onClick={handleDecrement} type="secondary">
+          <Button onClick={handleDecrement} type="default">
             Decrease
           </Button>
           
