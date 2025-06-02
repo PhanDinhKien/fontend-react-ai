@@ -1,10 +1,8 @@
 import React from 'react';
-import ThemeToggle from './ThemeToggle';
-import SelectDefault from './Select/SelectDefault/selectDefault';
-import AccountInfoDefault from './AccountInfo/AccountInfoDefault';
-import SelectLoadMore from './Select/SelectLoadMore/selectLoadMore';
-import HomePage from './HomePage';
-import { RootState } from '../redux/store';
+import SelectDefault from '../../components/Select/SelectDefault/selectDefault';
+import AccountInfoDefault from '../../components/AccountInfo/AccountInfoDefault';
+import SelectLoadMore from '../../components/Select/SelectLoadMore/selectLoadMore';
+import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +13,9 @@ const DemoHomeContent: React.FC = () => {
     { label: 'Option 2', value: 2 },
     { label: 'Option 3', value: 3 },
   ];
+  
   const apiState = useSelector((state: RootState) => state.api);
+
   const { t } = useTranslation();
 
   return (
@@ -23,7 +23,6 @@ const DemoHomeContent: React.FC = () => {
       <header>
         <h1>{t('demo_home_title')}</h1>
         <p>{t('demo_home_welcome')}</p>
-        <ThemeToggle />
       </header>
       <div style={{ maxWidth: 300, margin: '24px auto' }}>
         <SelectDefault

@@ -33,7 +33,6 @@ const AppMain: React.FC<AppProps> = () => {
 
   const menuItems = React.useMemo(() => mapRoutesToMenuItems(appRoutes, t), [t]);
 
-  // Language options for SelectDefault
   const languageOptions = [
     { label: 'English', value: 'en' },
     { label: 'Tiếng Việt', value: 'vi' },
@@ -47,52 +46,74 @@ const AppMain: React.FC<AppProps> = () => {
           <Route
             path="/*"
             element={
-              <Layout style={{ height: 'calc(100vh - 0px)' }}>
-                <Sider
-                  width={260}
-                  theme='light'
-                  collapsible
-                  collapsed={collapsed}
-                  onCollapse={setCollapsed}
+              <Layout>
+                <Header
+                  style={{
+                    padding: 0,
+                    background: colorBgContainer,
+                    display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                    boxShadow: '0px 2px 15px 0px #0C429926',
+                    borderBottom: '1px solid #e5e7eb',
+                  }}
                 >
-                  <div className="demo-logo-vertical" style={{ height: 32, margin: 16, borderRadius: 6 }} />
-                  <Menu
-                    theme="light"
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    items={menuItems}
-                    onClick={(e) => setPendingNav(e.key)}
-                    className={collapsed ? 'menu-collapsed' : ''}
+                  <img
+                    src={require('./image/logo.png')}
+                    alt="Logo"
+                    style={{
+                      height: 32,
+                      margin: '16px 0 16px 24px',
+                      borderRadius: 6,
+                      objectFit: 'contain',
+                      flex: '0 0 auto',
+                    }}
                   />
-                </Sider>
-                <Layout>
-                  <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-                    <div style={{ minWidth: 120, marginRight: 16, marginTop: 16 }}>
-                      <SelectDefault
-                        options={languageOptions}
-                        value={i18n.language}
-                        onChange={lng => i18n.changeLanguage(lng as string)}
-                        placeholder="Language"
-                      />
-                    </div>
-                  </Header>
-                  <Content style={{ margin: '24px 16px 0' }}>
-                    <div
-                      style={{
-                        padding: 24,
-                        minHeight: 360,
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG,
-                      }}
-                    >
-                      <Routes>
-                        {appRoutes.map(route => (
-                          <Route key={route.key} path={route.path} element={route.element} />
-                        ))}
-                      </Routes>
-                      <NavigateHandler pendingNav={pendingNav} setPendingNav={setPendingNav} />
-                    </div>
-                  </Content>
+                  <div style={{ minWidth: 120, marginRight: 16, marginTop: 16, marginLeft: 'auto' }}>
+                    <SelectDefault
+                      options={languageOptions}
+                      value={i18n.language}
+                      onChange={lng => i18n.changeLanguage(lng as string)}
+                      placeholder="Language"
+                    />
+                  </div>
+                </Header>
+                <Layout style={{ height: 'calc(100vh - 64px)' }}>
+                  <Sider
+                    width={260}
+                    theme="light"
+                    collapsible
+                    collapsed={collapsed}
+                    onCollapse={setCollapsed}
+                    style={{ borderRight: '1px solid #e5e7eb' }}
+                  >
+                    <Menu
+                      theme="light"
+                      mode="inline"
+                      defaultSelectedKeys={['1']}
+                      items={menuItems}
+                      onClick={e => setPendingNav(e.key)}
+                      className={collapsed ? 'menu-collapsed' : ''}
+                    />
+                  </Sider>
+                  <Layout>
+                    <Content>
+                      <div
+                        style={{
+                          padding: 24,
+                          minHeight: 360,
+                          background: colorBgContainer,
+                        }}
+                      >
+                        <Routes>
+                          {appRoutes.map(route => (
+                            <Route key={route.key} path={route.path} element={route.element} />
+                          ))}
+                        </Routes>
+                        <NavigateHandler pendingNav={pendingNav} setPendingNav={setPendingNav} />
+                      </div>
+                    </Content>
+                  </Layout>
                 </Layout>
               </Layout>
             }

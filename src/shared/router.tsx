@@ -1,8 +1,8 @@
 // src/shared/router.tsx
 // Định nghĩa các route dùng chung cho hệ thống
 import React from 'react';
-import DemoHomeContent from '../components/DemoHomeContent';
-import AboutPage from '../components/AboutPage';
+import DemoHomeContent from '../page/home/DemoHomeContent';
+import AboutPage from '../page/home/AboutPage';
 import { UserOutlined, VideoCameraOutlined, UploadOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 
