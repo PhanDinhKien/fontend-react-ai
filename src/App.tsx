@@ -3,12 +3,19 @@ import './styles/global.scss';
 import HomePage from './components/HomePage';
 import { ThemeProvider } from './context/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
+import SelectDefault from './components/Select/SelectDefault/selectDefault';
 
 interface AppProps {
   title?: string;
 }
 
 const AppMain: React.FC<AppProps> = ({ title = 'React App' }) => {
+  const [selected, setSelected] = React.useState<string | number | undefined>(undefined);
+  const options = [
+    { label: 'Option 1', value: 1 },
+    { label: 'Option 2', value: 2 },
+    { label: 'Option 3', value: 3 },
+  ];
   return (
     <ThemeProvider>
       <div className="app-container">
@@ -17,7 +24,15 @@ const AppMain: React.FC<AppProps> = ({ title = 'React App' }) => {
           <p>Welcome to your React application with TypeScript, SCSS and LESS!</p>
           <ThemeToggle />
         </header>
-        
+        <div style={{ maxWidth: 300, margin: '24px auto' }}>
+          <SelectDefault
+            label="Demo Select"
+            options={options}
+            value={selected}
+            onChange={setSelected}
+            placeholder="Chọn một option"
+          />
+        </div>
         <main>
           <HomePage />
         </main>
