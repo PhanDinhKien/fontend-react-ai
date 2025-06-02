@@ -14,7 +14,7 @@ const DemoHomeContent: React.FC = () => {
     { label: 'Option 3', value: 3 },
   ];
   
-  const apiState = useSelector((state: RootState) => state.api);
+  const apiState = useSelector((state: RootState) => state.fetchData);
 
   const { t } = useTranslation();
 
@@ -66,16 +66,7 @@ const DemoHomeContent: React.FC = () => {
           pageSize={20}
         />
       </div>
-      <div style={{ maxWidth: 320, margin: '24px auto' }}>
-        <div style={{ padding: 12, background: '#f6f6f6', borderRadius: 8, marginBottom: 16 }}>
-          <b>{t('api_state_demo')}</b>
-          {apiState.loading && <div>{t('loading')}</div>}
-          {apiState.error && <div style={{ color: 'red' }}>{t('error')}: {apiState.error}</div>}
-          {apiState.data && (
-            <pre style={{ fontSize: 13, margin: 0 }}>{JSON.stringify(apiState.data, null, 2)}</pre>
-          )}
-        </div>
-      </div>
+  
     </>
   );
 };

@@ -9,7 +9,7 @@ import LoginPage from './page/login/login';
 import { appRoutes, mapRoutesToMenuItems, NavigateHandler } from './shared/router';
 import { useTranslation } from 'react-i18next';
 import SelectDefault from './components/Select/SelectDefault/selectDefault';
-import { fetchData } from './redux/thunk/fetchData';
+import { fetchDataThunk } from './redux/thunk/fetchData';
 
 const { Header, Content, Sider } = Layout;
 
@@ -33,7 +33,7 @@ const AppMain: React.FC<AppProps> = () => {
   }, [fetchDataState]);
 
   React.useEffect(() => {
-    dispatch(fetchData({ url: 'https://jsonplaceholder.typicode.com/todos/1' }));
+    dispatch(fetchDataThunk());
   }, [dispatch]);
 
   const {
@@ -47,34 +47,8 @@ const AppMain: React.FC<AppProps> = () => {
     { label: 'Tiếng Việt', value: 'vi' },
   ];
 
-  // Lấy tiêu đề từ menu đang chọn
-  const [pageTitle, setPageTitle] = React.useState<string>(t('home'));
-
-  React.useEffect(() => {
-    // Cập nhật tiêu đề khi pendingNav thay đổi
-    if (pendingNav) {
-      const found = appRoutes.find(r => r.key === pendingNav);
-      if (found) setPageTitle(t(found.key));
-    }
-  }, [pendingNav, t]);
-
-  React.useEffect(() => {
-    // Khi vào trang đầu tiên
-    const homeRoute = appRoutes.find(r => r.key === '1');
-    const label = homeRoute?.label ? t(homeRoute.label) : t('home');
-    setPageTitle(label);
-    document.title = label;
-  }, [t]);
-
   const handleMenuClick = (e: { key: string }) => {
     setPendingNav(e.key);
-    const found = appRoutes.find(r => r.key === e.key);
-    if (found) {
-      // Ưu tiên label nếu có, fallback về key
-      const label = found.label ? t(found.label) : t(found.key);
-      setPageTitle(label);
-      document.title = label;
-    }
   };
 
   return (
@@ -144,15 +118,6 @@ const AppMain: React.FC<AppProps> = () => {
                           background: colorBgContainer,
                         }}
                       >
-                        {/* Hiển thị trạng thái fetchData */}
-                        <div style={{ marginBottom: 16 }}>
-                          <b>fetchData state:</b>
-                          {fetchDataState.loading && <div style={{ color: '#1890ff' }}>{t('loading')}</div>}
-                          {fetchDataState.error && <div style={{ color: 'red' }}>{t('error')}: {fetchDataState.error}</div>}
-                          {fetchDataState.data && (
-                            <pre style={{ fontSize: 13, margin: 0 }}>{JSON.stringify(fetchDataState.data, null, 2)}</pre>
-                          )}
-                        </div>
                         <Routes>
                           {appRoutes.map(route => (
                             <Route key={route.key} path={route.path} element={route.element} />

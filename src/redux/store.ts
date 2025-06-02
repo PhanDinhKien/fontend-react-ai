@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import apiReducer from './apiSlice';
-import fetchDataReducer from './thunk/fetchData';
+import fetchDataReducer from './slice/fetchDataSlice';
 
 const counterSlice = createSlice({
   name: 'counter',
@@ -18,7 +17,6 @@ export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 export const store = configureStore({
   reducer: {
     counter: counterSlice.reducer,
-    api: apiReducer,
     fetchData: fetchDataReducer,
   },
 });
