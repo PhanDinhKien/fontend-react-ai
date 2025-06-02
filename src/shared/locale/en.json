@@ -5,5 +5,18 @@
   "upload": "Upload",
   "upload_3_1": "Subnav 3-1",
   "upload_3_2": "Subnav 3-2",
-  "upload_3_3": "Subnav 3-3"
+  "upload_3_3": "Subnav 3-3",
+  "demo_home_title": "Demo Home",
+  "demo_home_welcome": "Welcome to your React application with TypeScript, SCSS and LESS!",
+  "demo_select_label": "Demo Select",
+  "option_1": "Option 1",
+  "option_2": "Option 2",
+  "option_3": "Option 3",
+  "select_option_placeholder": "Select an option",
+  "demo_load_more_label": "Demo Load More",
+  "item_label": "Item {{number}}",
+  "select_load_more_placeholder": "Select an item (load more)",
+  "api_state_demo": "API State Demo:",
+  "loading": "Loading...",
+  "error": "Error"
 }

@@ -6,6 +6,7 @@ import SelectLoadMore from './Select/SelectLoadMore/selectLoadMore';
 import HomePage from './HomePage';
 import { RootState } from '../redux/store';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 const DemoHomeContent: React.FC = () => {
   const [selected, setSelected] = React.useState<string | number | undefined>(undefined);
@@ -15,21 +16,22 @@ const DemoHomeContent: React.FC = () => {
     { label: 'Option 3', value: 3 },
   ];
   const apiState = useSelector((state: RootState) => state.api);
+  const { t } = useTranslation();
 
   return (
     <>
       <header>
-        <h1>Demo Home</h1>
-        <p>Welcome to your React application with TypeScript, SCSS and LESS!</p>
+        <h1>{t('demo_home_title')}</h1>
+        <p>{t('demo_home_welcome')}</p>
         <ThemeToggle />
       </header>
       <div style={{ maxWidth: 300, margin: '24px auto' }}>
         <SelectDefault
-          label="Demo Select"
-          options={options}
+          label={t('demo_select_label')}
+          options={options.map(opt => ({ ...opt, label: t(`option_${opt.value}`) }))}
           value={selected}
           onChange={setSelected}
-          placeholder="Chọn một option"
+          placeholder={t('select_option_placeholder')}
         />
       </div>
       <div style={{ maxWidth: 320, margin: '24px auto' }}>
@@ -41,11 +43,11 @@ const DemoHomeContent: React.FC = () => {
       </div>
       <div style={{ maxWidth: 320, margin: '24px auto' }}>
         <SelectLoadMore
-          label="Demo Load More"
+          label={t('demo_load_more_label')}
           service={async ({ page, pageSize, keyword }) => {
             await new Promise(res => setTimeout(res, 1000));
             const all = Array.from({ length: 1000 }, (_, i) => ({
-              label: `Item ${i + 1}`,
+              label: t('item_label', { number: i + 1 }),
               value: i + 1,
             })).filter(item => !keyword || item.label.toLowerCase().includes(keyword.toLowerCase()));
             const start = (page - 1) * pageSize;
@@ -61,15 +63,15 @@ const DemoHomeContent: React.FC = () => {
           })}
           value={selected}
           onChange={setSelected}
-          placeholder="Chọn một mục (load more)"
+          placeholder={t('select_load_more_placeholder')}
           pageSize={20}
         />
       </div>
       <div style={{ maxWidth: 320, margin: '24px auto' }}>
         <div style={{ padding: 12, background: '#f6f6f6', borderRadius: 8, marginBottom: 16 }}>
-          <b>API State Demo:</b>
-          {apiState.loading && <div>Loading...</div>}
-          {apiState.error && <div style={{ color: 'red' }}>Error: {apiState.error}</div>}
+          <b>{t('api_state_demo')}</b>
+          {apiState.loading && <div>{t('loading')}</div>}
+          {apiState.error && <div style={{ color: 'red' }}>{t('error')}: {apiState.error}</div>}
           {apiState.data && (
             <pre style={{ fontSize: 13, margin: 0 }}>{JSON.stringify(apiState.data, null, 2)}</pre>
           )}

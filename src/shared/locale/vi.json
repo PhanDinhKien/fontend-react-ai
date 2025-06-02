@@ -5,5 +5,18 @@
   "upload": "Tải lên",
   "upload_3_1": "Nhóm 3-1",
   "upload_3_2": "Nhóm 3-2",
-  "upload_3_3": "Nhóm 3-3"
+  "upload_3_3": "Nhóm 3-3",
+  "demo_home_title": "Trang chủ demo",
+  "demo_home_welcome": "Chào mừng bạn đến với ứng dụng React sử dụng TypeScript, SCSS và LESS!",
+  "demo_select_label": "Chọn demo",
+  "option_1": "Lựa chọn 1",
+  "option_2": "Lựa chọn 2",
+  "option_3": "Lựa chọn 3",
+  "select_option_placeholder": "Chọn một lựa chọn",
+  "demo_load_more_label": "Demo tải thêm",
+  "item_label": "Mục {{number}}",
+  "select_load_more_placeholder": "Chọn một mục (tải thêm)",
+  "api_state_demo": "Trạng thái API:",
+  "loading": "Đang tải...",
+  "error": "Lỗi"
 }
