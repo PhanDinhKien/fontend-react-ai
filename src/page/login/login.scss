@@ -1,0 +1,24 @@
+@use '../../styles/_colors' as *;
+@use '../../styles/_mixins' as *;
+@use '../../styles/config' as *;
+
+.login-page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $bg-color;
+}
+
+.login-form-card {
+  background: $white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: $box-shadow;
+  min-width: 340px;
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 24px;
+}

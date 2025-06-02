@@ -13,6 +13,7 @@ import {
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import DemoHomeContent from './components/DemoHomeContent';
 import AboutPage from './components/AboutPage';
+import LoginPage from './page/login/login';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -81,51 +82,59 @@ const AppMain: React.FC<AppProps> = ({ title = 'React App' }) => {
   return (
     <ThemeProvider>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <Layout style={{ minHeight: '100vh' }}>
-          <Sider
-            theme='light'
-            breakpoint="lg"
-            collapsedWidth="1"
-            onBreakpoint={(broken) => {
-              console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-              console.log(collapsed, type);
-            }}
-          >
-            <div className="demo-logo-vertical" style={{ height: 32, margin: 16, borderRadius: 6 }} />
-            <Menu
-              theme="light"
-              mode="inline"
-              defaultSelectedKeys={['1']}
-              items={items}
-              onClick={(e) => setPendingNav(e.key)}
-            />
-          </Sider>
-          <Layout>
-            <Header style={{ padding: 0, background: colorBgContainer }} />
-            <Content style={{ margin: '24px 16px 0' }}>
-              <div
-                style={{
-                  padding: 24,
-                  minHeight: 360,
-                  background: colorBgContainer,
-                  borderRadius: borderRadiusLG,
-                }}
-              >
-                <Routes>
-                  {getRouteConfig().map(route => (
-                    <Route key={route.key} path={route.path} element={route.element} />
-                  ))}
-                </Routes>
-                <NavigateHandler pendingNav={pendingNav} setPendingNav={setPendingNav} />
-              </div>
-            </Content>
-            <Footer style={{ textAlign: 'center' }}>
-              Ant Design ©{new Date().getFullYear()} Created by Ant UED
-            </Footer>
-          </Layout>
-        </Layout>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/*"
+            element={
+              <Layout style={{ minHeight: '100vh' }}>
+                <Sider
+                  theme='light'
+                  breakpoint="lg"
+                  collapsedWidth="1"
+                  onBreakpoint={(broken) => {
+                    console.log(broken);
+                  }}
+                  onCollapse={(collapsed, type) => {
+                    console.log(collapsed, type);
+                  }}
+                >
+                  <div className="demo-logo-vertical" style={{ height: 32, margin: 16, borderRadius: 6 }} />
+                  <Menu
+                    theme="light"
+                    mode="inline"
+                    defaultSelectedKeys={['1']}
+                    items={items}
+                    onClick={(e) => setPendingNav(e.key)}
+                  />
+                </Sider>
+                <Layout>
+                  <Header style={{ padding: 0, background: colorBgContainer }} />
+                  <Content style={{ margin: '24px 16px 0' }}>
+                    <div
+                      style={{
+                        padding: 24,
+                        minHeight: 360,
+                        background: colorBgContainer,
+                        borderRadius: borderRadiusLG,
+                      }}
+                    >
+                      <Routes>
+                        {getRouteConfig().map(route => (
+                          <Route key={route.key} path={route.path} element={route.element} />
+                        ))}
+                      </Routes>
+                      <NavigateHandler pendingNav={pendingNav} setPendingNav={setPendingNav} />
+                    </div>
+                  </Content>
+                  <Footer style={{ textAlign: 'center' }}>
+                    Ant Design ©{new Date().getFullYear()} Created by Ant UED
+                  </Footer>
+                </Layout>
+              </Layout>
+            }
+          />
+        </Routes>
       </BrowserRouter>
     </ThemeProvider>
   );
