@@ -39,13 +39,15 @@ const handleDeleteDataRejected = (state: FetchDataState, action: any) => {
   state.error = action.error.message || 'Error';
 };
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 export const fetchDataThunk = createAsyncThunk('fetchData/fetchDataThunk', async () => {
-  const response = await callApi({ url: 'https://api.example.com/data', method: 'GET' });
+  const response = await callApi({ url: `${API_BASE_URL}/data`, method: 'GET' });
   return response;
 });
 
 export const deleteDataThunk = createAsyncThunk('fetchData/deleteDataThunk', async (id: number) => {
-  const response = await callApi({ url: `https://api.example.com/data/${id}`, method: 'DELETE' });
+  const response = await callApi({ url: `${API_BASE_URL}/data/${id}`, method: 'DELETE' });
   return response;
 });
 
