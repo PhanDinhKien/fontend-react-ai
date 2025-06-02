@@ -12,7 +12,7 @@ export interface AppRoute {
   /** React element to render for this route */
   element: React.ReactNode;
   /** Menu label */
-  label?: string;
+  label: string;
   /** Unique key for menu and router */
   key: string;
   /** Menu icon */
@@ -26,15 +26,15 @@ export interface AppRoute {
 export const appRoutes: AppRoute[] = [
   {
     path: '/',
-    element: <DemoHomeContent />,
-    label: 'Home',
+    element: <DemoHomeContent />, 
+    label: 'home', // use translation key
     key: '1',
     icon: <UserOutlined />,
   },
   {
     path: '/about',
     element: <AboutPage />, 
-    label: 'About',
+    label: 'about', // use translation key
     key: '2',
     icon: <VideoCameraOutlined />,
     hide: false,
@@ -42,7 +42,7 @@ export const appRoutes: AppRoute[] = [
   {
     path: '/upload',
     element: <div>Upload Page</div>,
-    label: 'Upload',
+    label: 'upload', // use translation key
     key: '3',
     icon: <UploadOutlined />,
     hide: true,
@@ -50,19 +50,19 @@ export const appRoutes: AppRoute[] = [
       {
         path: '/upload/3-1',
         element: <div>Subnav 3-1</div>,
-        label: 'Subnav 3-1',
+        label: 'upload_3_1', // add translation key if needed
         key: '3-1',
       },
       {
         path: '/upload/3-2',
         element: <div>Subnav 3-2</div>,
-        label: 'Subnav 3-2',
+        label: 'upload_3_2', // add translation key if needed
         key: '3-2',
       },
       {
         path: '/upload/3-3',
         element: <div>Subnav 3-3</div>,
-        label: 'Subnav 3-3',
+        label: 'upload_3_3', // add translation key if needed
         key: '3-3',
         hide: true,
       },
@@ -70,17 +70,22 @@ export const appRoutes: AppRoute[] = [
   },
 ];
 
+// Add translation keys for submenu if needed in your en.json/vi.json:
+// "upload_3_1": "Subnav 3-1",
+// "upload_3_2": "Subnav 3-2",
+// "upload_3_3": "Subnav 3-3",
+
 // check ẩn hiển menu, check permission của menu
-export const mapRoutesToMenuItems = (routes: AppRoute[]): any[] => {
+export const mapRoutesToMenuItems = (routes: AppRoute[], t?: (key: string) => string): any[] => {
   return routes
     .filter(route => !route.hide)
     .map(route => {
-      const { key, label, icon, children } = route;
+      const { key, icon, children, label } = route;
       return {
         key,
         icon,
-        label,
-        children: children ? mapRoutesToMenuItems(children) : undefined,
+        label: t ? t(label) : label, // Use key for translation instead of label
+        children: children ? mapRoutesToMenuItems(children, t) : undefined,
       };
     });
 }

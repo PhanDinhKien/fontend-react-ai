@@ -4,6 +4,7 @@ import App from './App';
 
 // Import any global styles here
 import './styles/global.scss';
+import './shared/locale/i18n';
 
 const rootElement = document.getElementById('root');
 

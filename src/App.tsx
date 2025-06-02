@@ -8,6 +8,8 @@ import { Layout, Menu, theme } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './page/login/login';
 import { appRoutes, mapRoutesToMenuItems, NavigateHandler } from './shared/router';
+import { useTranslation } from 'react-i18next';
+import SelectDefault from './components/Select/SelectDefault/selectDefault';
 
 const { Header, Content, Sider } = Layout;
 
@@ -19,6 +21,7 @@ const AppMain: React.FC<AppProps> = () => {
   const [pendingNav, setPendingNav] = React.useState<string | null>(null);
   const [collapsed, setCollapsed] = React.useState(false);
   const dispatch = useDispatch<AppDispatch>();
+  const { t, i18n } = useTranslation();
 
   React.useEffect(() => {
     dispatch(fetchData({ url: 'https://jsonplaceholder.typicode.com/todos/1' }));
@@ -28,7 +31,13 @@ const AppMain: React.FC<AppProps> = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
-  const menuItems = React.useMemo(() => mapRoutesToMenuItems(appRoutes), []);
+  const menuItems = React.useMemo(() => mapRoutesToMenuItems(appRoutes, t), [t]);
+
+  // Language options for SelectDefault
+  const languageOptions = [
+    { label: 'English', value: 'en' },
+    { label: 'Tiếng Việt', value: 'vi' },
+  ];
 
   return (
     <ThemeProvider>
@@ -57,7 +66,16 @@ const AppMain: React.FC<AppProps> = () => {
                   />
                 </Sider>
                 <Layout>
-                  <Header style={{ padding: 0, background: colorBgContainer }} />
+                  <Header style={{ padding: 0, background: colorBgContainer, display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                    <div style={{ minWidth: 120, marginRight: 16, marginTop: 16 }}>
+                      <SelectDefault
+                        options={languageOptions}
+                        value={i18n.language}
+                        onChange={lng => i18n.changeLanguage(lng as string)}
+                        placeholder="Language"
+                      />
+                    </div>
+                  </Header>
                   <Content style={{ margin: '24px 16px 0' }}>
                     <div
                       style={{
