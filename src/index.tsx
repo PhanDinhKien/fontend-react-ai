@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AppMain from './App';
+import App from './App';
 
 // Import any global styles here
 import './styles/global.scss';
@@ -15,6 +15,6 @@ const root = ReactDOM.createRoot(rootElement);
 
 root.render(
   <React.StrictMode>
-    <AppMain />
+    <App />
   </React.StrictMode>
 );
