@@ -18,5 +18,11 @@
   "select_load_more_placeholder": "Chọn một mục (tải thêm)",
   "api_state_demo": "Trạng thái API:",
   "loading": "Đang tải...",
-  "error": "Lỗi"
+  "error": "Lỗi",
+  "confirmDelete": {
+    "title": "Xác nhận xoá thông tin",
+    "okText": "Xoá",
+    "cancelText": "Huỷ",
+    "content": "Bạn có chắc chắn muốn xoá không?"
+  }
 }

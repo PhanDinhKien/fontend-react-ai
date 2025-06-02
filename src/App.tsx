@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/global.scss';
 import { ThemeProvider } from './context/ThemeContext';
 import { Provider, useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,8 @@ import { appRoutes, mapRoutesToMenuItems, NavigateHandler } from './shared/route
 import { useTranslation } from 'react-i18next';
 import SelectDefault from './components/Select/SelectDefault/selectDefault';
 import { fetchDataThunk } from './redux/thunk/fetchData';
+import ConfirmDelete from './components/Modal/ConfirmDelete';
+import { Trash } from 'phosphor-react/dist';
 const { Header, Content, Sider } = Layout;
 
 interface AppProps {
@@ -19,6 +21,7 @@ interface AppProps {
 const AppMain: React.FC<AppProps> = () => {
   const [pendingNav, setPendingNav] = React.useState<string | null>(null);
   const [collapsed, setCollapsed] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch<AppDispatch>();
   const { t, i18n } = useTranslation();
 
@@ -49,6 +52,13 @@ const AppMain: React.FC<AppProps> = () => {
   const handleMenuClick = (e: { key: string }) => {
     setPendingNav(e.key);
   };
+
+  const handleOk = () => {
+    setOpen(false);
+    // Xử lý logic xoá ở đây
+  };
+
+  const handleCancel = () => setOpen(false);
 
   return (
     <ThemeProvider>
@@ -125,6 +135,13 @@ const AppMain: React.FC<AppProps> = () => {
                           ))}
                         </Routes>
                         <NavigateHandler pendingNav={pendingNav} setPendingNav={setPendingNav} />
+                        <button onClick={() => setOpen(true)}>Hiện Confirm Delete</button>
+                        <ConfirmDelete 
+                          open={open} 
+                          onOk={handleOk} 
+                          onCancel={handleCancel} 
+                          iconConfirm={<Trash size={20} weight="fill" />}
+                        />
                       </div>
                     </Content>
                   </Layout>
