@@ -75,9 +75,6 @@ const DemoHomeContent: React.FC = () => {
           )}
         </div>
       </div>
-      <main>
-        <HomePage />
-      </main>
     </>
   );
 };
