@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 import { ThemeProvider } from './context/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 import SelectDefault from './components/Select/SelectDefault/selectDefault';
+import AccountInfoDefault from './components/AccountInfo/AccountInfoDefault';
 
 interface AppProps {
   title?: string;
@@ -31,6 +32,13 @@ const AppMain: React.FC<AppProps> = ({ title = 'React App' }) => {
             value={selected}
             onChange={setSelected}
             placeholder="Chọn một option"
+          />
+        </div>
+        <div style={{ maxWidth: 320, margin: '24px auto' }}>
+          <AccountInfoDefault
+            name="Nguyễn Chi Long"
+            code="11904047"
+            avatarUrl="https://randomuser.me/api/portraits/men/32.jpg"
           />
         </div>
         <main>
