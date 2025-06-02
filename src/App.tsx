@@ -38,6 +38,37 @@ const AppMain: React.FC<AppProps> = () => {
     { label: 'Tiếng Việt', value: 'vi' },
   ];
 
+  // Lấy tiêu đề từ menu đang chọn
+  const [pageTitle, setPageTitle] = React.useState<string>(t('home'));
+
+  React.useEffect(() => {
+    // Cập nhật tiêu đề khi pendingNav thay đổi
+    if (pendingNav) {
+      const found = appRoutes.find(r => r.key === pendingNav);
+      if (found) setPageTitle(t(found.key));
+    }
+  }, [pendingNav, t]);
+
+  React.useEffect(() => {
+    // Khi vào trang đầu tiên
+    const homeRoute = appRoutes.find(r => r.key === '1');
+    const label = homeRoute?.label ? t(homeRoute.label) : t('home');
+    setPageTitle(label);
+    document.title = label;
+  }, [t]);
+
+  const handleMenuClick = (e: { key: string }) => {
+    setPendingNav(e.key);
+    const found = appRoutes.find(r => r.key === e.key);
+    debugger; 
+    if (found) {
+      // Ưu tiên label nếu có, fallback về key
+      const label = found.label ? t(found.label) : t(found.key);
+      setPageTitle(label);
+      document.title = label;
+    }
+  };
+
   return (
     <ThemeProvider>
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
@@ -92,7 +123,7 @@ const AppMain: React.FC<AppProps> = () => {
                       mode="inline"
                       defaultSelectedKeys={['1']}
                       items={menuItems}
-                      onClick={e => setPendingNav(e.key)}
+                      onClick={handleMenuClick}
                       className={collapsed ? 'menu-collapsed' : ''}
                     />
                   </Sider>
