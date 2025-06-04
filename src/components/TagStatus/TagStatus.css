@@ -1,0 +1,30 @@
+.tag-status {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0 12px;
+  line-height: 24px;
+  border: none;
+}
+
+.tag-status-blue {
+  background: #E7F0FD;
+  color: #1669EF;
+}
+.tag-status-green {
+  background: #EBF7F2;
+  color: #36B37E;
+}
+.tag-status-purple {
+  background: #F0EEF9;
+  color: #7B61FF;
+}
+.tag-status-red {
+  background: #FBE8E9;
+  color: #D72229;
+}
+.tag-status-orange {
+  background: #FEF1E8;
+  color: #F57921;
+}

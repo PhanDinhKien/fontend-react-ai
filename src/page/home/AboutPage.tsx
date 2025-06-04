@@ -5,6 +5,7 @@ import DefaultTable from '../../components/Table/TableDefault/TableDefault';
 import AccountInfoDefault from '../../components/AccountInfo/AccountInfoDefault';
 import ButtonDeleteInTable from '../../components/Button/ButtonDeleteInTable';
 import ButtonEditInTable from '../../components/Button/ButtonEditInTable';
+import TagStatus from '../../components/TagStatus/TagStatus';
 import type { ColumnsType } from 'antd/es/table';
 
 const AboutPage: React.FC = () => {
@@ -26,7 +27,20 @@ const AboutPage: React.FC = () => {
       ),
     },
     { title: 'Email', dataIndex: 'email', key: 'email', width: 200 },
-    { title: 'Status', dataIndex: 'status', key: 'status', width: 120 },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      key: 'status',
+      width: 120,
+      render: (text: string) => {
+        let type: any = 'blue';
+        if (text === 'Active') type = 'green';
+        else if (text === 'Inactive') type = 'red';
+        else if (text === 'Pending') type = 'orange';
+        else if (text === 'Admin') type = 'purple';
+        return <TagStatus type={type} isBold={true}>{text}</TagStatus>;
+      },
+    },
     { title: 'Create Date', dataIndex: 'createDate', key: 'createDate', width: 140 },
     { title: 'Type', dataIndex: 'type', key: 'type', width: 120 },
     {
