@@ -1,0 +1,26 @@
+.button-link-common {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  opacity: 1;
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.button-delete-in-table {
+  @extend .button-link-common;
+  margin: 4px 5px;
+  background: none;
+  color: #D72229;
+}
+
+.button-edit-in-table {
+  @extend .button-link-common;
+  margin: 4px 5px;
+  background: none;
+  color: #1669EF;
+}
