@@ -16,6 +16,7 @@ const WarningModal: React.FC<WarningModalProps> = (props) => {
     cancelText,
     titleText,
     isShowButtonOk = true,
+    isShowButtonCancel = true,
   } = props;
 
   const modalTitle = (
@@ -35,6 +36,7 @@ const WarningModal: React.FC<WarningModalProps> = (props) => {
       className="warning-modal"
       title={modalTitle}
       okButtonProps={{ style: { display: isShowButtonOk ? undefined : 'none' } }}
+      cancelButtonProps={{ style: { display: isShowButtonCancel ? undefined : 'none' } }}
     >
       <div className="warning-modal-content">
         {content || t('warningModal.content', 'Đây là cảnh báo!')}
