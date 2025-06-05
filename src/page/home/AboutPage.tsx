@@ -1,17 +1,21 @@
 import React from 'react';
 import WarningModal from '../../components/Modal/Warning';
-import { WarningCircle } from 'phosphor-react';
+import { Placeholder, WarningCircle } from 'phosphor-react';
 import DefaultTable from '../../components/Table/TableDefault/TableDefault';
 import AccountInfoDefault from '../../components/AccountInfo/AccountInfoDefault';
 import ButtonDeleteInTable from '../../components/Button/ButtonDeleteInTable';
 import ButtonEditInTable from '../../components/Button/ButtonEditInTable';
 import TagStatus from '../../components/TagStatus/TagStatus';
 import ModalDefault from '../../components/Modal/ModalDefault';
+import DrawerForm from '../../components/Drawer/DrawerForm';
+import FormManager from '../../components/Form/FormManager';
 import type { ColumnsType } from 'antd/es/table';
 
 const AboutPage: React.FC = () => {
   const [open, setOpen] = React.useState(false);
   const [openModalDefault, setOpenModalDefault] = React.useState(false);
+  const [openDrawerForm, setOpenDrawerForm] = React.useState(false);
+  const [openFormManager, setOpenFormManager] = React.useState(false);
   // Sample data for the table
   const columns: ColumnsType<any> = [
     {
@@ -102,6 +106,8 @@ const AboutPage: React.FC = () => {
       <p>This is a sample About page. You can put any content here.</p>
       <button onClick={() => setOpen(true)}>Show Warning Modal</button>
       <button onClick={() => setOpenModalDefault(true)} style={{ marginLeft: 8 }}>Show Modal Default</button>
+      <button onClick={() => setOpenDrawerForm(true)} style={{ marginLeft: 8 }}>Show Drawer Form</button>
+      <button onClick={() => setOpenFormManager(true)} style={{ marginLeft: 8 }}>Show Dynamic Form</button>
       <WarningModal
         open={open}
         onOk={() => setOpen(false)}
@@ -118,6 +124,87 @@ const AboutPage: React.FC = () => {
       >
         <div>Đây là nội dung của Modal Default.</div>
       </ModalDefault>
+      <DrawerForm
+        open={openDrawerForm}
+        onClose={() => setOpenDrawerForm(false)}
+        title="Drawer Form Demo"
+        okText="Lưu"
+        cancelText="Hủy"
+        formManagerConfig={{
+          forms: [{
+            key: 'drawer-user-form',
+            columns: [
+              { title: 'Họ tên', dataIndex: 'name', valueType: 'text', required: true, fieldProps: { placeholder: 'Nhập họ tên' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng nhập họ tên!' }, { min: 3, message: 'Họ tên tối thiểu 3 ký tự!' }] } },
+              { title: 'Email', dataIndex: 'email', valueType: 'email', required: true, fieldProps: { placeholder: 'Nhập email' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng nhập email!' }, { type: 'email', message: 'Email không hợp lệ!' }] } },
+              {
+                title: 'Mật khẩu',
+                dataIndex: 'password',
+                valueType: 'password',
+                required: true,
+                // Sử dụng dependencies để fieldProps cập nhật lại khi email thay đổi
+                dependencies: ['email'],
+                fieldProps: (form: any) => {
+                  const email = form?.getFieldValue ? form.getFieldValue('email') : undefined;
+                  return {
+                    placeholder: 'Nhập mật khẩu',
+                    disabled: email !== 'phandinhkienmta@gmail.com',
+                  };
+                },
+                formItemProps: {
+                  rules: [
+                    { required: true, message: 'Vui lòng nhập mật khẩu!' },
+                    { min: 6, message: 'Mật khẩu tối thiểu 6 ký tự!' }
+                  ],
+                }
+              },
+              { title: 'Số điện thoại', dataIndex: 'phone', valueType: 'phone', fieldProps: { placeholder: 'Nhập số điện thoại' }, formItemProps: { rules: [{ pattern: /^\d{10,11}$/, message: 'Số điện thoại không hợp lệ!' }] } },
+              { title: 'Số lượng', dataIndex: 'amount', valueType: 'digit', fieldProps: { placeholder: 'Nhập số lượng' }, formItemProps: { rules: [{ type: 'number', min: 1, message: 'Số lượng phải lớn hơn 0!' }] } },
+              { title: 'Tiền', dataIndex: 'money', valueType: 'money', fieldProps: { placeholder: 'Nhập số tiền' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng nhập số tiền!' }] } },
+              { title: 'Ngày sinh', dataIndex: 'birthday', valueType: 'date', fieldProps: { placeholder: 'Chọn ngày sinh' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng chọn ngày sinh!' }] } },
+              { title: 'Thời gian', dataIndex: 'time', valueType: 'time', fieldProps: { placeholder: 'Chọn thời gian' } },
+              { title: 'Ngày giờ', dataIndex: 'dateTime', valueType: 'dateTime', fieldProps: { placeholder: 'Chọn ngày giờ' } },
+              { title: 'Chọn loại', dataIndex: 'type', valueType: 'select', valueEnum: { Admin: 'Admin', User: 'User', Guest: 'Guest' }, required: true, fieldProps: { placeholder: 'Chọn loại tài khoản' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng chọn loại tài khoản!' }] } },
+              { title: 'Chọn nhiều', dataIndex: 'multiSelect', valueType: 'select', fieldProps: { mode: 'multiple', placeholder: 'Chọn nhiều loại' }, valueEnum: { A: 'A', B: 'B', C: 'C' } },
+              { title: 'Radio', dataIndex: 'radio', valueType: 'radio', valueEnum: { yes: 'Có', no: 'Không' }, fieldProps: { placeholder: 'Chọn radio' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng chọn radio!' }] } },
+              { title: 'Checkbox', dataIndex: 'checkbox', valueType: 'checkbox', valueEnum: { agree: 'Đồng ý' }, fieldProps: { placeholder: 'Chọn checkbox' } },
+              { title: 'Switch', dataIndex: 'switch', valueType: 'switch', fieldProps: { placeholder: 'Bật/Tắt' } },
+              { title: 'Textarea', dataIndex: 'desc', valueType: 'textarea', fieldProps: { placeholder: 'Nhập mô tả' }, formItemProps: { rules: [{ min: 10, message: 'Mô tả tối thiểu 10 ký tự!' }] } },
+              { title: 'Slider', dataIndex: 'slider', valueType: 'slider', fieldProps: { min: 0, max: 100, placeholder: 'Chọn giá trị' } },
+              { title: 'Rate', dataIndex: 'rate', valueType: 'rate', fieldProps: { placeholder: 'Đánh giá' } },
+              { title: 'Progress', dataIndex: 'progress', valueType: 'progress', fieldProps: { placeholder: 'Tiến độ' } },
+              { title: 'Phần trăm', dataIndex: 'percent', valueType: 'percent', fieldProps: { placeholder: 'Nhập phần trăm' } },
+              { title: 'URL', dataIndex: 'url', valueType: 'url', fieldProps: { placeholder: 'Nhập URL' }, formItemProps: { rules: [{ type: 'url', message: 'URL không hợp lệ!' }] } },
+              { title: 'Json', dataIndex: 'json', valueType: 'jsonCode', fieldProps: { placeholder: 'Nhập JSON' } },
+              { title: 'Code', dataIndex: 'code', valueType: 'code', fieldProps: { placeholder: 'Nhập code' } },
+              { title: 'Avatar', dataIndex: 'avatar', valueType: 'avatar', fieldProps: { placeholder: 'Chọn avatar' } },
+              { title: 'Ảnh', dataIndex: 'image', valueType: 'image', fieldProps: { placeholder: 'Chọn ảnh' } },
+              { title: 'Cascader', dataIndex: 'cascader', valueType: 'cascader', fieldProps: { placeholder: 'Chọn cascader' }, request: async () => [{ label: 'A', value: 'a' }, { label: 'B', value: 'b' }] },
+              { title: 'TreeSelect', dataIndex: 'tree', valueType: 'treeSelect', fieldProps: { placeholder: 'Chọn tree' }, request: async () => [{ title: 'Node1', value: '1', children: [{ title: 'Node1-1', value: '1-1' }] }] },
+              { valueType: 'divider', title: 'Thông tin bổ sung' },
+              { valueType: 'group', title: 'Nhóm trường', columns: [
+                { title: 'Nhóm 1', dataIndex: 'group1', valueType: 'text', fieldProps: { placeholder: 'Nhập nhóm 1' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng nhập nhóm 1!' }] } },
+                { title: 'Nhóm 2', dataIndex: 'group2', valueType: 'text', fieldProps: { placeholder: 'Nhập nhóm 2' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng nhập nhóm 2!' }] } },
+              ] },
+            ],
+            onFinish: (values: any) => {
+              alert('DrawerForm submit: ' + JSON.stringify(values));
+              setOpenDrawerForm(false);
+            },
+            proFormProps: {
+              submitter: { searchConfig: { submitText: 'Lưu' } },
+            },
+          }]
+        }}
+      />
+      {openFormManager && (
+        <ModalDefault
+          open={openFormManager}
+          onOk={() => setOpenFormManager(false)}
+          onCancel={() => setOpenFormManager(false)}
+          title="FormManager - SchemaForm Demo"
+        >
+        </ModalDefault>
+      )}
       <div style={{ marginTop: 32 }}>
         <DefaultTable
           columns={columns}
