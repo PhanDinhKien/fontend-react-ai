@@ -30,5 +30,10 @@
     "okText": "OK",
     "cancelText": "Cancel",
     "content": "This is a warning!"
+  },
+  "modalDefault": {
+    "title": "Default Modal Title",
+    "okText": "Save",
+    "cancelText": "Cancel"
   }
 }

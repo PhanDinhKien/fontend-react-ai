@@ -30,5 +30,10 @@
     "okText": "Đồng ý",
     "cancelText": "Huỷ",
     "content": "Đây là cảnh báo!"
+  },
+  "modalDefault": {
+    "title": "Tiêu đề Modal mặc định",
+    "okText": "Lưu",
+    "cancelText": "Hủy"
   }
 }

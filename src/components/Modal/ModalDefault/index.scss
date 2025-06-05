@@ -1,0 +1,26 @@
+.modal-default {
+  // Customize your modal style here
+  .ant-modal-content {
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .ant-modal-header {
+    border-radius: 8px 8px 0 0;
+  }
+  .ant-modal-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #0C4299;
+  }
+  .ant-btn-primary {
+    background: #0C4299;
+    color: #fff;
+    border: none;
+    &:hover, &:focus {
+      background: #0C4299;
+      color: #fff;
+      opacity: 0.9;
+    }
+  }
+}

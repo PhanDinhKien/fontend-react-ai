@@ -6,10 +6,12 @@ import AccountInfoDefault from '../../components/AccountInfo/AccountInfoDefault'
 import ButtonDeleteInTable from '../../components/Button/ButtonDeleteInTable';
 import ButtonEditInTable from '../../components/Button/ButtonEditInTable';
 import TagStatus from '../../components/TagStatus/TagStatus';
+import ModalDefault from '../../components/Modal/ModalDefault';
 import type { ColumnsType } from 'antd/es/table';
 
 const AboutPage: React.FC = () => {
   const [open, setOpen] = React.useState(false);
+  const [openModalDefault, setOpenModalDefault] = React.useState(false);
   // Sample data for the table
   const columns: ColumnsType<any> = [
     {
@@ -99,6 +101,7 @@ const AboutPage: React.FC = () => {
       <h2>About Page</h2>
       <p>This is a sample About page. You can put any content here.</p>
       <button onClick={() => setOpen(true)}>Show Warning Modal</button>
+      <button onClick={() => setOpenModalDefault(true)} style={{ marginLeft: 8 }}>Show Modal Default</button>
       <WarningModal
         open={open}
         onOk={() => setOpen(false)}
@@ -106,6 +109,15 @@ const AboutPage: React.FC = () => {
         iconWarning={<WarningCircle size={20} color="#F57921" weight="fill" />}
         content="Bạn đang thực hiện thao tác cảnh báo!"
       />
+      <ModalDefault
+        open={openModalDefault}
+        onOk={() => setOpenModalDefault(false)}
+        onCancel={() => setOpenModalDefault(false)}
+        title="Modal Default"
+        iconTitle={<WarningCircle size={20} color="#0C4299" weight="fill" />}
+      >
+        <div>Đây là nội dung của Modal Default.</div>
+      </ModalDefault>
       <div style={{ marginTop: 32 }}>
         <DefaultTable
           columns={columns}
