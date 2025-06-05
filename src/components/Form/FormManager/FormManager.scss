@@ -1,0 +1,28 @@
+.form-manager-schema-form .ant-form-item {
+  margin-bottom: 16px;
+}
+
+.form-manager-schema-form .ant-btn-primary,
+.form-manager-schema-form .ant-btn {
+  margin-top: 16px;
+}
+
+.form-manager-schema-form .ant-form-item-label > label {
+  color: #4A5466;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  padding: 4px;
+}
+
+.form-manager-schema-form .ant-form-item-control-input-content > *:not(.ant-radio-group):not(.ant-checkbox-group):not(.ant-switch),
+.form-manager-schema-form .ant-input,
+.form-manager-schema-form .ant-select,
+.form-manager-schema-form .ant-select-selector,
+.form-manager-schema-form .ant-picker,
+.form-manager-schema-form .ant-input-number,
+.form-manager-schema-form textarea {
+  width: 100% !important;
+  min-width: 0;
+  box-sizing: border-box;
+}
