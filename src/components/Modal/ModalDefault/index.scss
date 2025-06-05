@@ -2,16 +2,28 @@
   // Customize your modal style here
   .ant-modal-content {
     border-radius: 8px;
-    padding: 16px;
+    padding: 0px;
   }
   .ant-modal-header {
     border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #EBECF0;
   }
   .ant-modal-title {
     font-weight: 600;
     font-size: 20px;
     line-height: 24px;
     color: #0C4299;
+    padding: 12px 10px
+  }
+  .ant-modal-body {
+    padding: 10px;
+  }
+  .ant-modal-footer {
+    padding: 10px;
+    border-top: 1px solid #EBECF0;
+    .ant-btn {
+      font-weight: 600;
+    }
   }
   .ant-btn-primary {
     background: #0C4299;
@@ -20,7 +32,7 @@
     &:hover, &:focus {
       background: #0C4299;
       color: #fff;
-      opacity: 0.9;
+      opacity: 0.99;
     }
   }
 }
