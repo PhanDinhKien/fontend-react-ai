@@ -38,6 +38,12 @@ const AppMain: React.FC<AppProps> = () => {
     dispatch(fetchDataThunk());
   }, [dispatch]);
 
+  React.useEffect(() => {
+    // Lấy theme từ localStorage khi load lại trang
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  }, []);
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -65,7 +71,7 @@ const AppMain: React.FC<AppProps> = () => {
   return (
     <ConfigProvider locale={antdLocale}>
       <ThemeProvider>
-        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route
@@ -94,7 +100,7 @@ const AppMain: React.FC<AppProps> = () => {
                         flex: '0 0 auto',
                       }}
                     />
-                    <div style={{ minWidth: 120, marginRight: 16, marginTop: 16, marginLeft: 'auto' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', minWidth: 240, marginRight: 16, marginTop: 16, marginLeft: 'auto', gap: 12 }}>
                       <SelectDefault
                         options={languageOptions}
                         value={i18n.language}
@@ -103,6 +109,22 @@ const AppMain: React.FC<AppProps> = () => {
                         showBorder={false}
                         showSearch={false}
                       />
+                      <div style={{ minWidth: 90 }}>
+                        <SelectDefault
+                          options={[
+                            { label: 'Light', value: 'light' },
+                            { label: 'Dark', value: 'dark' },
+                          ]}
+                          value={document.documentElement.getAttribute('data-theme') || 'light'}
+                          onChange={theme => {
+                            document.documentElement.setAttribute('data-theme', theme as string);
+                            localStorage.setItem('theme', theme as string);
+                          }}
+                          placeholder="Theme"
+                          showBorder={false}
+                          showSearch={false}
+                        />
+                      </div>
                     </div>
                   </Header>
                   <Layout style={{ height: 'calc(100vh - 64px)' }}>

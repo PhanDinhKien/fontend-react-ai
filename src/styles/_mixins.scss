@@ -1,3 +1,13 @@
+// ---------------------------------------------
+// File: _mixins.scss
+// Tác dụng: Chứa các mixin SCSS dùng chung cho toàn dự án
+// - Định nghĩa các mixin flexbox (flex-center, flex-column, flex-between)
+// - Định nghĩa các mixin style text (heading-1, heading-2, body-text)
+// - Định nghĩa mixin style button (button-base)
+// - Định nghĩa các biến breakpoint và mixin responsive (respond-to)
+// => Giúp tái sử dụng code, viết CSS/SCSS ngắn gọn, đồng nhất, dễ bảo trì
+// ---------------------------------------------
+
 // Common mixins and utilities for the project
 @use './colors' as *;
 

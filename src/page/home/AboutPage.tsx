@@ -185,6 +185,7 @@ const AboutPage: React.FC = () => {
                 { title: 'Nhóm 1', dataIndex: 'group1', valueType: 'text', fieldProps: { placeholder: 'Nhập nhóm 1' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng nhập nhóm 1!' }] } },
                 { title: 'Nhóm 2', dataIndex: 'group2', valueType: 'text', fieldProps: { placeholder: 'Nhập nhóm 2' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng nhập nhóm 2!' }] } },
               ] },
+              { title: 'Lớp', dataIndex: 'class', valueType: 'select', fieldProps: { placeholder: 'Chọn lớp' }, valueEnum: { A1: 'A1', A2: 'A2', B1: 'B1', B2: 'B2' }, formItemProps: { rules: [{ required: true, message: 'Vui lòng chọn lớp!' }] } },
             ],
             onFinish: (values: any) => {
               alert('DrawerForm submit: ' + JSON.stringify(values));
