@@ -1,3 +1,11 @@
+// ---------------------------------------------
+// File: theme.ts
+// Tác dụng: Quản lý cấu hình màu sắc, typography, spacing, border, shadow, breakpoints cho toàn dự án dưới dạng JS object
+// - Dùng cho code JavaScript/TypeScript (component, style-in-js...)
+// - Các giá trị nên đồng bộ với biến màu trong _colors.scss để nhất quán giữa JS và SCSS
+// - Giúp tái sử dụng, dễ bảo trì, dễ chuyển theme động trong code React
+// ---------------------------------------------
+
 /**
  * Color configuration for the project
  * This file exports color constants that can be used in JavaScript/TypeScript code

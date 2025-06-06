@@ -1,0 +1,48 @@
+@use '../../../styles/config' as *;
+
+.warning-modal .ant-modal-content {
+  border-radius: 8px;
+}
+
+.warning-modal .ant-modal-title {
+  color: $color-warning-main;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 10px 10px;
+  border-bottom: 1px solid $color-border;
+}
+
+.warning-modal .ant-modal-content {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0 0 0 0px;
+  padding: 0 !important;
+}
+
+.warning-modal .warning-modal-content {
+  padding: 16px;
+  font-size: 13px;
+  color: #333;
+}
+
+.warning-modal .ant-modal-footer {
+  border-top: 1px solid $color-border;
+  padding: 10px 10px;
+  background: #fafbfc;
+  border-radius: 0 0 8px 8px;
+}
+
+.warning-modal .ant-btn-primary {
+  background: $color-warning-main !important;
+  color: $white !important;
+  font-size: 13px !important;
+  line-height: 16px !important;
+  border: none;
+  font-weight: 500;
+}
+
+.warning-modal .ant-btn-primary:hover,
+.warning-modal .ant-btn-primary:focus {
+  background: $color-warning-hover !important;
+  color: $white !important;
+}

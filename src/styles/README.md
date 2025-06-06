@@ -1,20 +1,20 @@
-# Color Configuration System
+# Hệ Thống Quản Lý Màu Sắc (Color Configuration System)
 
-This document provides an overview of the color configuration system in this project.
+Tài liệu này cung cấp tổng quan về hệ thống quản lý màu sắc và theme trong dự án này.
 
-## Files Structure
+## Cấu Trúc File
 
-- `src/styles/_colors.scss`: Core SCSS color variables
-- `src/styles/_mixins.scss`: SCSS mixins and utility functions
-- `src/styles/config.scss`: Main SCSS configuration file that imports colors and mixins
-- `src/styles/variables.less`: LESS version of the color variables 
-- `src/styles/theme.ts`: TypeScript version of the theme for use in React components
+- `src/styles/_colors.scss`: Biến màu SCSS cốt lõi
+- `src/styles/_mixins.scss`: Các mixin SCSS và hàm tiện ích
+- `src/styles/config.scss`: File cấu hình SCSS chính, import màu và mixin
+- `src/styles/variables.less`: Phiên bản LESS của biến màu
+- `src/styles/theme.ts`: Phiên bản TypeScript của theme để dùng trong component React
 
-## How to Use
+## Cách Sử Dụng
 
-### In SCSS Files
+### Trong File SCSS
 
-Use the config file at the top of your SCSS file:
+Sử dụng file config ở đầu file SCSS:
 
 ```scss
 @use './config' as *;
@@ -26,19 +26,19 @@ Use the config file at the top of your SCSS file:
   border-radius: $border-radius-md;
   box-shadow: $box-shadow;
   
-  // Using mixins
+  // Sử dụng mixin
   @include flex-center;
   
-  // Using media queries
+  // Sử dụng media query
   @include respond-to(md) {
     flex-direction: row;
   }
 }
 ```
 
-### In LESS Files
+### Trong File LESS
 
-Import the variables file at the top of your LESS file:
+Import file biến màu ở đầu file LESS:
 
 ```less
 @import "./variables.less";
@@ -50,14 +50,14 @@ Import the variables file at the top of your LESS file:
   border-radius: @border-radius-md;
   box-shadow: @box-shadow;
   
-  // Using mixins
+  // Sử dụng mixin
   .flex-center();
 }
 ```
 
-### In React Components
+### Trong Component React
 
-Import the theme or specific values from the theme file:
+Import theme hoặc giá trị cụ thể từ file theme:
 
 ```tsx
 import React from 'react';
@@ -75,7 +75,7 @@ const MyComponent: React.FC = () => {
   return (
     <div style={containerStyle}>
       <h2 style={{ fontSize: typography.fontSize.xl }}>
-        Styled with theme
+        Được style bằng theme
       </h2>
     </div>
   );
@@ -84,44 +84,44 @@ const MyComponent: React.FC = () => {
 export default MyComponent;
 ```
 
-## Color Palette
+## Bảng Màu (Color Palette)
 
-The color system is organized into the following categories:
+Hệ thống màu được tổ chức theo các nhóm sau:
 
-1. **Primary Colors**
-   - Main brand color and variations
+1. **Màu chính (Primary Colors)**
+   - Màu thương hiệu chính và các biến thể
 
-2. **Secondary Colors**
-   - Secondary brand color and variations
+2. **Màu phụ (Secondary Colors)**
+   - Màu thương hiệu phụ và các biến thể
 
-3. **Neutral Colors**
-   - White, black, and grays
+3. **Màu trung tính (Neutral Colors)**
+   - Trắng, đen, các sắc độ xám
 
-4. **Text Colors**
-   - For headings, body text, and disabled text
+4. **Màu chữ (Text Colors)**
+   - Dùng cho tiêu đề, nội dung, trạng thái disabled
 
-5. **Functional Colors**
-   - For info, success, warning, and error states
+5. **Màu chức năng (Functional Colors)**
+   - Dùng cho trạng thái info, success, warning, error
 
-6. **Background Colors**
-   - For different background layers
+6. **Màu nền (Background Colors)**
+   - Dùng cho các lớp nền khác nhau
 
-## Additional Theme Properties
+## Thuộc Tính Theme Bổ Sung
 
-The theme also includes:
+Theme còn bao gồm:
 
-- **Typography**: Font families, sizes, and weights
-- **Spacing**: Consistent spacing values
-- **Border Radius**: For different levels of corner rounding
-- **Shadows**: For different elevation levels
-- **Breakpoints**: For responsive design
+- **Typography**: Font, cỡ chữ, độ đậm
+- **Spacing**: Khoảng cách chuẩn
+- **Border Radius**: Bo góc các mức
+- **Shadows**: Đổ bóng các mức
+- **Breakpoints**: Cho responsive
 
-## Extending
+## Mở Rộng
 
-To add new colors or theme properties:
+Để thêm màu hoặc thuộc tính theme mới:
 
-1. Add them to `_colors.scss`
-2. Add them to `variables.less`
-3. Add them to `theme.ts`
+1. Thêm vào `_colors.scss`
+2. Thêm vào `variables.less`
+3. Thêm vào `theme.ts`
 
-This ensures consistency across all styling approaches in the project.
+Làm như vậy sẽ đảm bảo sự nhất quán giữa tất cả các cách styling trong dự án.

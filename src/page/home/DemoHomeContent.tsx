@@ -2,19 +2,22 @@ import React from 'react';
 import SelectDefault from '../../components/Select/SelectDefault/selectDefault';
 import AccountInfoDefault from '../../components/AccountInfo/AccountInfoDefault';
 import SelectLoadMore from '../../components/Select/SelectLoadMore/selectLoadMore';
-import { RootState } from '../../redux/store';
-import { useSelector } from 'react-redux';
+import { Form } from 'antd';
 import { useTranslation } from 'react-i18next';
+import ProForm from '@ant-design/pro-form/es';
+import ConfirmDelete from '../../components/Modal/ConfirmDelete';
+import { Trash } from 'phosphor-react';
 
 const DemoHomeContent: React.FC = () => {
   const [selected, setSelected] = React.useState<string | number | undefined>(undefined);
+  const [openDelete, setOpenDelete] = React.useState(false);
   const options = [
     { label: 'Option 1', value: 1 },
     { label: 'Option 2', value: 2 },
     { label: 'Option 3', value: 3 },
   ];
-  
-  const apiState = useSelector((state: RootState) => state.fetchData);
+
+  const [formAtnd] = Form.useForm();
 
   const { t } = useTranslation();
 
@@ -41,32 +44,44 @@ const DemoHomeContent: React.FC = () => {
         />
       </div>
       <div style={{ maxWidth: 320, margin: '24px auto' }}>
-        <SelectLoadMore
-          label={t('demo_load_more_label')}
-          service={async ({ page, pageSize, keyword }) => {
-            await new Promise(res => setTimeout(res, 1000));
-            const all = Array.from({ length: 1000 }, (_, i) => ({
-              label: t('item_label', { number: i + 1 }),
-              value: i + 1,
-            })).filter(item => !keyword || item.label.toLowerCase().includes(keyword.toLowerCase()));
-            const start = (page - 1) * pageSize;
-            const end = start + pageSize;
-            return {
-              data: all.slice(start, end),
-              total: all.length,
-            };
-          }}
-          parseData={apiData => ({
-            options: apiData.data,
-            hasMore: apiData.data.length > 0 && apiData.data.length < apiData.total,
-          })}
-          value={selected}
-          onChange={setSelected}
-          placeholder={t('select_load_more_placeholder')}
-          pageSize={20}
+        <ProForm form={formAtnd} submitter={false} layout="vertical">
+          <SelectLoadMore
+            label={t('demo_load_more_label')}
+            service={async ({ page, pageSize, keyword }) => {
+              await new Promise(res => setTimeout(res, 5000));
+              const all = Array.from({ length: 5000 }, (_, i) => ({
+                label: t('item_label', { number: i + 1 }),
+                value: i + 1,
+              })).filter(item => !keyword || item.label.toLowerCase().includes(keyword.toLowerCase()));
+              const start = (page - 1) * pageSize;
+              const end = start + pageSize;
+              return {
+                data: all.slice(start, end),
+                total: all.length,
+              };
+            }}
+            parseData={apiData => ({
+              options: apiData.data,
+              hasMore: apiData.data.length > 0 && apiData.data.length < apiData.total,
+            })}
+            value={selected}
+            onChange={setSelected}
+            placeholder={t('select_load_more_placeholder')}
+            pageSize={20}
+          />
+        </ProForm>
+      </div>
+      <div style={{ maxWidth: 320, margin: '24px auto' }}>
+        <button onClick={() => setOpenDelete(true)} style={{ marginBottom: 16 }}>
+          Hiện Confirm Delete
+        </button>
+        <ConfirmDelete
+          open={openDelete}
+          onOk={() => setOpenDelete(false)}
+          onCancel={() => setOpenDelete(false)}
+          iconConfirm={<Trash size={20} weight="fill" color="#D72229" />}
         />
       </div>
-  
     </>
   );
 };

@@ -1,0 +1,44 @@
+.confirm-delete-modal .ant-modal-content {
+  border-radius: 8px;
+}
+.confirm-delete-modal .ant-modal-title {
+  color: #D72229;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 10px 10px;
+  border-bottom: 1px solid #EBECF0;
+
+}
+.confirm-delete-modal .ant-modal-content {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0 0 0 0px;
+  padding: 0 !important;
+}
+
+.confirm-delete-modal .confirm-delete-content {
+    padding: 16px;
+    font-size: 13px;
+    color: #333;
+}
+
+.confirm-delete-modal .ant-modal-footer {
+  border-top: 1px solid #EBECF0;
+  padding: 10px 10px;
+  background: #fafbfc;
+  border-radius: 0 0 8px 8px;
+}
+
+.confirm-delete-modal .ant-btn-primary {
+  background: #D72229 !important;
+  color: #fff !important;
+  font-size: 13px  !important;
+  line-height: 16px  !important;
+}
+.confirm-delete-modal .ant-btn-primary:hover, 
+.confirm-delete-modal .ant-btn-primary:focus {
+  background: #D72229 !important;
+  color: #fff !important;
+  font-size: 13px  !important;
+  line-height: 16px  !important;
+}

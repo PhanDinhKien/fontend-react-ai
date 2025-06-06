@@ -18,5 +18,22 @@
   "select_load_more_placeholder": "Select an item (load more)",
   "api_state_demo": "API State Demo:",
   "loading": "Loading...",
-  "error": "Error"
+  "error": "Error",
+  "confirmDelete": {
+    "title": "Confirm delete information",
+    "okText": "Delete",
+    "cancelText": "Cancel",
+    "content": "Are you sure you want to delete?"
+  },
+  "warningModal": {
+    "title": "Warning",
+    "okText": "OK",
+    "cancelText": "Cancel",
+    "content": "This is a warning!"
+  },
+  "modalDefault": {
+    "title": "Default Modal Title",
+    "okText": "Save",
+    "cancelText": "Cancel"
+  }
 }

@@ -7,10 +7,11 @@ interface FetchDataState {
   error: string | null;
 }
 
-const initialState: FetchDataState = {
+const initialState: FetchDataState & { form: any } = {
   data: null,
   loading: true,
   error: null,
+  form: null, // Sẽ lưu instance của form (thường là const [form] = useForm())
 };
 
 const handleFetchDataPending = (state: FetchDataState) => {
@@ -39,20 +40,27 @@ const handleDeleteDataRejected = (state: FetchDataState, action: any) => {
   state.error = action.error.message || 'Error';
 };
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+
 export const fetchDataThunk = createAsyncThunk('fetchData/fetchDataThunk', async () => {
-  const response = await callApi({ url: 'https://api.example.com/data', method: 'GET' });
+  const response = await callApi({ url: `${API_BASE_URL}/data`, method: 'GET' });
   return response;
 });
 
 export const deleteDataThunk = createAsyncThunk('fetchData/deleteDataThunk', async (id: number) => {
-  const response = await callApi({ url: `https://api.example.com/data/${id}`, method: 'DELETE' });
+  const response = await callApi({ url: `${API_BASE_URL}/data/${id}`, method: 'DELETE' });
   return response;
 });
 
 const fetchDataSlice = createSlice({
   name: 'fetchData',
   initialState,
-  reducers: {},
+  reducers: {
+    setForm(state, action) {
+      debugger; 
+      state.form = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(fetchDataThunk.pending, handleFetchDataPending)
@@ -63,5 +71,7 @@ const fetchDataSlice = createSlice({
       .addCase(deleteDataThunk.rejected, handleDeleteDataRejected);
   },
 });
+
+export const { setForm } = fetchDataSlice.actions;
 
 export default fetchDataSlice.reducer;

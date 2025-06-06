@@ -77,7 +77,23 @@ const SelectLoadMore: React.FC<SelectLoadMoreProps> = ({
     <ProFormSelect
       name={name}
       label={label}
-      options={options}
+      options={loading ? [
+        ...options,
+        {
+          label: (
+            <div style={{ textAlign: 'center', width: '100%' }}>
+              <span style={{
+                display: 'inline-block',
+                fontWeight: 600
+              }}>
+                Đang tải...
+              </span>
+            </div>
+          ),
+          value: '',
+          disabled: true,
+        },
+      ] : options}
       fieldProps={{
         value,
         onChange,
