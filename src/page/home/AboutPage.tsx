@@ -9,6 +9,7 @@ import TagStatus from '../../components/TagStatus/TagStatus';
 import ModalDefault from '../../components/Modal/ModalDefault';
 import DrawerForm from '../../components/Drawer/DrawerForm';
 import FormManager from '../../components/Form/FormManager';
+import PsAlert from '../../components/Alert/Alert';
 import type { ColumnsType } from 'antd/es/table';
 
 const AboutPage: React.FC = () => {
@@ -16,6 +17,7 @@ const AboutPage: React.FC = () => {
   const [openModalDefault, setOpenModalDefault] = React.useState(false);
   const [openDrawerForm, setOpenDrawerForm] = React.useState(false);
   const [openFormManager, setOpenFormManager] = React.useState(false);
+  const [demoAlert, setDemoAlert] = React.useState<import('../../components/Alert/Alert').CustomAlertType | null>(null);
   // Sample data for the table
   const columns: ColumnsType<any> = [
     {
@@ -205,6 +207,24 @@ const AboutPage: React.FC = () => {
           title="FormManager - SchemaForm Demo"
         >
         </ModalDefault>
+      )}
+      <div style={{ margin: '24px 0', display: 'flex', gap: 12 }}>
+        <button onClick={() => setDemoAlert('info')}>Show Info Alert</button>
+        <button onClick={() => setDemoAlert('success')}>Show Success Alert</button>
+        <button onClick={() => setDemoAlert('error')}>Show Error Alert</button>
+        <button onClick={() => setDemoAlert('warning')}>Show Warning Alert</button>
+      </div>
+      {demoAlert && (
+        <PsAlert
+          type={demoAlert as import('../../components/Alert/Alert').CustomAlertType}
+          title={
+            demoAlert === 'info' ? 'Thông tin'
+            : demoAlert === 'success' ? 'Thành công'
+            : demoAlert === 'error' ? 'Lỗi'
+            : 'Cảnh báo'
+          }
+          description="Đây là nội dung mô tả cho alert. Bạn có thể thay đổi nội dung này tùy ý."
+        />
       )}
       <div style={{ marginTop: 32 }}>
         <DefaultTable
