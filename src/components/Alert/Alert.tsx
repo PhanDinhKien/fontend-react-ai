@@ -6,7 +6,7 @@
 // - Style qua SCSS, không dùng inline style cho icon/title/desc
 
 import React from 'react';
-import { Alert as AntdAlert} from 'antd';
+import { Alert as AntdAlert } from 'antd';
 import { InfoCircleOutlined, CheckCircleOutlined, CloseCircleOutlined, ExclamationCircleOutlined, CloseOutlined } from '@ant-design/icons';
 import './Alert.scss';
 
