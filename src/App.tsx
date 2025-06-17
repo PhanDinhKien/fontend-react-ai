@@ -68,9 +68,19 @@ const AppMain: React.FC<AppProps> = () => {
 
   const antdLocale = i18n.language === 'vi' ? viVN : enUS;
 
+  // State theme cho ThemeProvider
+  const [themeMode, setThemeMode] = React.useState(document.documentElement.getAttribute('data-theme') || 'light');
+
+  // Khi đổi theme thì cập nhật cả ThemeProvider và localStorage
+  const handleThemeChange = (theme: string) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    setThemeMode(theme);
+  };
+
   return (
     <ConfigProvider locale={antdLocale}>
-      <ThemeProvider>
+      <ThemeProvider key={themeMode}>
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
@@ -93,7 +103,7 @@ const AppMain: React.FC<AppProps> = () => {
                       src={require('./image/logo.png')}
                       alt="Logo"
                       style={{
-                        height: 32,
+                        height: 36,
                         margin: '16px 0 16px 24px',
                         borderRadius: 6,
                         objectFit: 'contain',
@@ -114,12 +124,10 @@ const AppMain: React.FC<AppProps> = () => {
                           options={[
                             { label: 'Light', value: 'light' },
                             { label: 'Dark', value: 'dark' },
+                            { label: 'Pink', value: 'pink' },
                           ]}
-                          value={document.documentElement.getAttribute('data-theme') || 'light'}
-                          onChange={theme => {
-                            document.documentElement.setAttribute('data-theme', theme as string);
-                            localStorage.setItem('theme', theme as string);
-                          }}
+                          value={themeMode}
+                          onChange={theme => handleThemeChange(theme as string)}
                           placeholder="Theme"
                           showBorder={false}
                           showSearch={false}

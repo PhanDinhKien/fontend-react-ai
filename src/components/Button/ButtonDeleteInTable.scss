@@ -1,0 +1,8 @@
+@use './ButtonCommon.scss';
+
+.button-delete-in-table {
+  @extend .button-common;
+  margin: 4px 5px;
+  background: none;
+  color: #1669EF;
+}
