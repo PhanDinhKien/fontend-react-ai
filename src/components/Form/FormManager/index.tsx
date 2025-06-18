@@ -34,7 +34,7 @@ const FormManager: React.FC<FormManagerProps> = ({ forms, form }) => {
       {forms.map(formConfig => (
          <BetaSchemaForm<DataItem> form={form}
             className="form-manager-schema-form"
-            submitter={false}
+            submitter={false} // Không hiển thị bất kỳ nút submit nào
             rowProps={{
                 gutter: [12, 12],
             }}
@@ -47,7 +47,8 @@ const FormManager: React.FC<FormManagerProps> = ({ forms, form }) => {
                 }
             }}
             columns={formConfig.columns}
-            {...formConfig.proFormProps}
+            // Đảm bảo không truyền submitter custom từ proFormProps
+            {...(formConfig.proFormProps ? { ...formConfig.proFormProps, submitter: false } : {})}
         />
       ))}
     </>
