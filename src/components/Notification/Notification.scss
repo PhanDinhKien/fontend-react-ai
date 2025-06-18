@@ -1,0 +1,65 @@
+// Notification.scss - style cho notification custom
+.custom-notification {
+  border-width: 1.5px;
+  border-style: solid;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(22, 105, 239, 0.04);
+  padding: 16px 20px;
+  min-width: 320px;
+  max-width: 400px;
+}
+.custom-notification-info {
+  border-color: #1669EF;
+}
+.custom-notification-success {
+  border-color: #00B42A;
+}
+.custom-notification-error {
+  border-color: #D72229;
+}
+.custom-notification-warning {
+  border-color: #F57921;
+}
+.custom-notification-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 4px;
+}
+.custom-notification-title.info {
+  color: #1669EF;
+}
+.custom-notification-title.success {
+  color: #00B42A;
+}
+.custom-notification-title.error {
+  color: #D72229;
+}
+.custom-notification-title.warning {
+  color: #F57921;
+}
+.custom-notification-description {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0%;
+  color: #444;
+}
+.custom-notification-icon {
+  font-size: 22px !important;
+  margin-right: 16px;
+  vertical-align: middle;
+}
+.custom-notification-icon.info {
+  color: #1669EF;
+}
+.custom-notification-icon.success {
+  color: #00B42A;
+}
+.custom-notification-icon.error {
+  color: #D72229;
+}
+.custom-notification-icon.warning {
+  color: #F57921;
+}

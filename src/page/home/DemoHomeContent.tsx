@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import ProForm from '@ant-design/pro-form/es';
 import ConfirmDelete from '../../components/Modal/ConfirmDelete';
 import { Trash } from 'phosphor-react';
+import { useNotification } from '../../components/Notification/Notification';
 
 const DemoHomeContent: React.FC = () => {
   const [selected, setSelected] = React.useState<string | number | undefined>(undefined);
@@ -20,9 +21,11 @@ const DemoHomeContent: React.FC = () => {
   const [formAtnd] = Form.useForm();
 
   const { t } = useTranslation();
+  const { showNotification, contextHolder } = useNotification();
 
   return (
     <>
+      {contextHolder}
       <header>
         <h1>{t('demo_home_title')}</h1>
         <p>{t('demo_home_welcome')}</p>
@@ -81,6 +84,44 @@ const DemoHomeContent: React.FC = () => {
           onCancel={() => setOpenDelete(false)}
           iconConfirm={<Trash size={20} weight="fill" color="#D72229" />}
         />
+      </div>
+      <div style={{ maxWidth: 320, margin: '24px auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <button
+          onClick={() => showNotification({
+            type: 'info',
+            title: 'Thông báo',
+            description: 'Đây là thông báo dạng info.',
+          })}
+        >
+          Show Info Notification
+        </button>
+        <button
+          onClick={() => showNotification({
+            type: 'success',
+            title: 'Thành công',
+            description: 'Bạn đã thao tác thành công!',
+          })}
+        >
+          Show Success Notification
+        </button>
+        <button
+          onClick={() => showNotification({
+            type: 'error',
+            title: 'Lỗi',
+            description: 'Đã xảy ra lỗi trong quá trình xử lý.',
+          })}
+        >
+          Show Error Notification
+        </button>
+        <button
+          onClick={() => showNotification({
+            type: 'warning',
+            title: 'Cảnh báo',
+            description: 'Đây là cảnh báo, hãy kiểm tra lại dữ liệu.',
+          })}
+        >
+          Show Warning Notification
+        </button>
       </div>
     </>
   );
