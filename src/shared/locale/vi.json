@@ -35,5 +35,19 @@
     "title": "Tiêu đề Modal mặc định",
     "okText": "Lưu",
     "cancelText": "Hủy"
-  }
+  },
+  "search_class": "Nhập tên/mã lớp để tìm kiếm...",
+  "filter.teacher": "Giáo viên",
+  "filter.location": "Địa điểm",
+  "filter.status": "Trạng thái",
+  "action.search": "Tìm kiếm",
+  "action.clearFilter": "Xoá bộ lọc",
+  "table.className": "Tên lớp",
+  "table.teacher": "Giáo viên",
+  "table.location": "Địa điểm",
+  "table.status": "Trạng thái",
+  "table.actions": "Thao tác",
+  "status.active": "Đang hoạt động",
+  "status.inactive": "Ngưng hoạt động",
+  "common.na": "Không có"
 }

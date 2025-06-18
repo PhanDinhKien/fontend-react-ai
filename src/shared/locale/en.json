@@ -35,5 +35,19 @@
     "title": "Default Modal Title",
     "okText": "Save",
     "cancelText": "Cancel"
-  }
+  },
+  "search_class": "Enter class name/ID to search...",
+  "filter.teacher": "Teacher",
+  "filter.location": "Location",
+  "filter.status": "Status",
+  "action.search": "Search",
+  "action.clearFilter": "Remove Filter",
+  "table.className": "Class Name",
+  "table.teacher": "Teacher",
+  "table.location": "Location",
+  "table.status": "Status",
+  "table.actions": "Actions",
+  "status.active": "Active",
+  "status.inactive": "Inactive",
+  "common.na": "N/A"
 }
