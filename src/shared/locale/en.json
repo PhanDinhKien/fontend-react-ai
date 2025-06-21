@@ -49,5 +49,21 @@
   "table.actions": "Actions",
   "status.active": "Active",
   "status.inactive": "Inactive",
-  "common.na": "N/A"
+  "common.na": "N/A",
+  "studentList.filter.search_placeholder": "Enter student name/ID...",
+  "studentList.filter.class": "Class",
+  "studentList.filter.gender": "Gender",
+  "studentList.filter.status": "Status",
+  "studentList.table.studentName": "Student Name",
+  "studentList.table.classGroup": "Class/Group",
+  "studentList.table.gender": "Gender",
+  "studentList.table.status": "Status",
+  "studentList.table.checkIn": "Check-in Time",
+  "studentList.table.checkOut": "Check-out Time",
+  "studentList.table.emergencyContact": "Emergency Contact",
+  "studentList.status.inClass": "In Class",
+  "studentList.status.left": "Left",
+  "studentList.status.transferred": "Transferred",
+  "studentList.common.na": "N/A",
+  "studentList.menu": "Student List"
 }

@@ -3,6 +3,7 @@
 // Quản lý state filter, phân trang, dữ liệu mẫu, và trả về props cho UI
 // Giúp tách biệt logic và UI, dễ bảo trì, mở rộng, tái sử dụng
 
+import { Form } from 'antd';
 import { useMemo, useState } from 'react';
 
 /**
@@ -32,6 +33,7 @@ export interface ClassData {
  * - Trả về props cho UI
  */
 export function useClassListLogic() {
+  const [form] = Form.useForm();
   const allTeachers: Teacher[] = [
     { id: 1, name: 'Nguyễn Văn A' },
     { id: 2, name: 'Trần Thị B' },
@@ -73,6 +75,7 @@ export function useClassListLogic() {
 
   // Trả về props cho UI
   return {
+    form,
     allTeachers,
     allLocations,
     allStatus,

@@ -49,5 +49,21 @@
   "table.actions": "Thao tác",
   "status.active": "Đang hoạt động",
   "status.inactive": "Ngưng hoạt động",
-  "common.na": "Không có"
+  "common.na": "Không có",
+  "studentList.filter.search_placeholder": "Nhập tên/mã học sinh để tìm kiếm...",
+  "studentList.filter.class": "Lớp",
+  "studentList.filter.gender": "Giới tính",
+  "studentList.filter.status": "Trạng thái",
+  "studentList.table.studentName": "Tên Học Sinh",
+  "studentList.table.classGroup": "Khối/Lớp",
+  "studentList.table.gender": "Giới Tính",
+  "studentList.table.status": "Trạng Thái",
+  "studentList.table.checkIn": "Thời Gian Vào Lớp",
+  "studentList.table.checkOut": "Thời Gian Ra Về",
+  "studentList.table.emergencyContact": "Liên Hệ Khẩn Cấp",
+  "studentList.status.inClass": "Đang trong lớp",
+  "studentList.status.left": "Đã về",
+  "studentList.status.transferred": "Chuyển lớp",
+  "studentList.common.na": "Không có",
+  "studentList.menu": "Danh sách học sinh"
 }

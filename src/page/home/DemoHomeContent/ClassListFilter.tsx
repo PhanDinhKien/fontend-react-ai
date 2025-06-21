@@ -3,7 +3,7 @@
 // Tái sử dụng được, nhận props điều khiển từ cha, hỗ trợ i18n, style chuẩn Ant Design.
 
 import React from 'react';
-import { Input, Select, Button, Row, Col } from 'antd';
+import { Input, Select, Button, Row, Col, Form } from 'antd';
 import { useTranslation } from 'react-i18next';
 
 /**
@@ -36,13 +36,14 @@ interface Props {
  * Component filter cho danh sách lớp học
  * Hiển thị các filter và nút thao tác, truyền props từ cha để điều khiển state
  */
-const ClassListFilter: React.FC<Props> = ({
+const ClassListFilter: React.FC<Props & { form: any }> = ({
+  form,
   search, setSearch, teacher, setTeacher, location, setLocation, status, setStatus,
   allTeachers, allLocations, allStatus, onClear, onSearch
 }) => {
   const { t } = useTranslation();
   return (
-    <div style={{ marginBottom: 16 }}>
+    <Form form={form} layout="vertical" style={{ marginBottom: 16 }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', width: '100%' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
           <Row gutter={8} style={{ width: '100%' }}>
@@ -119,7 +120,7 @@ const ClassListFilter: React.FC<Props> = ({
           </Button>
         </div>
       </div>
-    </div>
+    </Form>
   );
 };
 

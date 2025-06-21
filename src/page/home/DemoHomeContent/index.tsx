@@ -80,6 +80,7 @@ const DemoHomeContent: React.FC = () => {
   return (
     <div style={{ margin: '0 auto', padding: 24 }}>
       <ClassListFilter
+        form={logic.form}
         search={logic.search}
         setSearch={logic.setSearch}
         teacher={logic.teacher}
